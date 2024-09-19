@@ -1,0 +1,28 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<div class="profile-container">
+    <h2 class="profile-header">
+        <i class="fas fa-user"></i> Profile
+    </h2>
+    
+    {% if profile %}
+        <div class="profile-info">
+            <p><strong>Phone Number:</strong> {{ profile.phone_number }}</p>
+            <p><strong>Grade:</strong> {{ profile.grade }}</p>
+            <p><strong>Service:</strong> {{ profile.service }}</p>
+        </div>
+        
+        <div class="profile-picture">
+            {% if profile.profile_picture %}
+                <img src="{{ profile.profile_picture.url }}" alt="Profile Picture" class="img-fluid rounded-circle" style="max-width: 150px;" />
+            {% else %}
+                <p class="no-picture">No profile picture available.</p>
+            {% endif %}
+        </div>
+    {% else %}
+        <p>No profile information available.</p>
+    {% endif %}
+</div>
+{% endblock %}

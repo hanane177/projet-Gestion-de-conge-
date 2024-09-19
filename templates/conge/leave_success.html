@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+
+{% block title %}Succès de la Demande de Congé{% endblock %}
+
+{% block content %}
+    <main class="success-message">
+        <div class="container">
+            <h1>Votre demande de congé a été soumise avec succès !</h1>
+            <p>Merci d'avoir soumis votre demande. Vous recevrez une notification une fois qu'elle aura été examinée.</p>
+            <div class="button-group">
+                <a class="btn btn-secondary" href="{% url 'submit_leave' %}">Faire une nouvelle demande</a>
+                <a class="btn btn-secondary" href="{% url 'leave_list' %}">Voir vos demandes</a>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .success-message {
+        text-align: center;
+        margin: 50px auto;
+        padding: 40px;
+        border-radius: 10px;
+        background-color: #f8f9fa;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .success-message h1 {
+        color: #28a745;
+        margin-bottom: 20px;
+    }
+
+    .success-message p {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+    }
+
+    .button-group a {
+        margin: 10px;
+        text-decoration: none;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Déconnexion réussie</h2>
+    <p>Vous avez été déconnecté avec succès.</p>
+    <a href="{% url 'registration/login' %}" class="btn btn-primary">Se reconnecter</a>
+
+    <!-- Formulaire de Déconnexion -->
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-secondary me-2">Déconnexion</button>
+    </form>
+    
+</div>
+{% endblock %}

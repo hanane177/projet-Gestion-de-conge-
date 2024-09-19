@@ -1,0 +1,43 @@
+<!-- request_status.html -->
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">État des Demandes de Congé</h1>
+    
+    {% if requests %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Type de Congé</th>
+                    <th>Date de Début</th>
+                    <th>Date de Fin</th>
+                    <th>Status</th>
+                    <th>Date de Création</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for request in requests %}
+                    <tr>
+                        <td>{{ request.get_leave_type_display }}</td>
+                        <td>{{ request.start_date }}</td>
+                        <td>{{ request.end_date }}</td>
+                        <td>
+                            {% if request.status == 'Pending' %}
+                                En Attente
+                            {% elif request.status == 'Approved' %}
+                                Approuvé
+                            {% elif request.status == 'Rejected' %}
+                                Rejeté
+                            {% endif %}
+                        </td>
+                        <td>{{ request.created_at }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="text-center">Vous n'avez pas de demandes de congé en cours.</p>
+    {% endif %}
+</div>
+{% endblock %}

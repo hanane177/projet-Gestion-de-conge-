@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+    <h1 style="text-align: center;">Calendrier des Congés</h1>
+    <div id="calendar" style="max-width: 600px; margin: 0 auto;"></div>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $('#calendar').fullCalendar({
+                locale: 'fr',
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                events: [
+                    { title: 'Congé Annuel', start: '2024-09-10', end: '2024-09-15', color: '#FF5733' }, // Couleur personnalisée
+                    { title: 'Congé Maladie', start: '2024-09-20', end: '2024-09-22', color: '#33C3FF' } // Couleur personnalisée
+                ]
+            });
+        });
+    </script>
+
+    <style>
+        #calendar {
+            font-size: 0.8em; /* Réduit la taille de la police */
+        }
+        .fc-toolbar {
+            background-color: #f2f2f2; /* Couleur de fond de la barre d'outils */
+        }
+        .fc-day {
+            background-color: #e0e0e0; /* Couleur de fond des jours */
+        }
+        .fc-title {
+            color: #ffffff; /* Couleur du texte des événements */
+        }
+    </style>
+{% endblock %}

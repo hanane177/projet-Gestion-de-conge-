@@ -1,0 +1,117 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Ajouter une Demande de Congé</h2>
+    
+    <form method="POST" class="form-custom">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="id_date_debut">Date de début</label>
+                    <input type="date" class="form-control" id="id_date_debut" name="date_debut" required>
+                    {% if form.date_debut.errors %}
+                        <div class="text-danger">{{ form.date_debut.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="id_date_fin">Date de fin</label>
+                    <input type="date" class="form-control" id="id_date_fin" name="date_fin" required>
+                    {% if form.date_fin.errors %}
+                        <div class="text-danger">{{ form.date_fin.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group mb-4">
+            <label for="id_motif">Motif</label>
+            {{ form.motif|safe }}
+            {% if form.motif.errors %}
+                <div class="text-danger">{{ form.motif.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group mb-4">
+            <label for="id_type_conge">Type de congé</label>
+            {{ form.type_conge|safe }}
+            {% if form.type_conge.errors %}
+                <div class="text-danger">{{ form.type_conge.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="table-responsive mb-4">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>CIN</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Division</th>
+                        <th>Grade</th>
+                        <th>Téléphone</th>
+                        <th>Service</th>
+                        <th>Jours annuels</th>
+                        <th>Jours exceptionnels</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ request.user.userprofile.cin }}</td>
+                        <td>{{ request.user.first_name }}</td>
+                        <td>{{ request.user.last_name }}</td>
+                        <td>{{ request.user.userprofile.division }}</td>
+                        <td>{{ request.user.userprofile.grade }}</td>
+                        <td>{{ request.user.userprofile.phone_number }}</td>
+                        <td>{{ request.user.userprofile.service }}</td>
+                        <td>{{ request.user.userprofile.annual_leave_days }}</td>
+                        <td>{{ request.user.userprofile.exceptional_leave_days }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-secondary">Envoyer la Demande</button>
+            <button type="reset" class="btn btn-secondary">Annuler</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <style>
+        .form-custom {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        .thead-dark {
+            background-color: #343a40;
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+    </style>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/scripts.js' %}"></script>
+{% endblock %}

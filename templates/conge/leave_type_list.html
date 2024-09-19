@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Liste des Types de Congés</h1>
+
+    <!-- Tableau pour afficher les types de congés existants -->
+    <table class="table table-striped mt-5">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom du Type de Congé</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for leave_type in leave_types %}
+            <tr>
+                <td>{{ leave_type.id }}</td>
+                <td>{{ leave_type.name }}</td>
+                <td>{{ leave_type.description }}</td>
+                <td>
+                    <a href="{% url 'edit_leave_type' leave_type.id %}" class="btn btn-warning btn-sm">Modifier</a>
+                    <a href="{% url 'delete_leave_type' leave_type.id %}" class="btn btn-danger btn-sm">Supprimer</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="text-center">Aucun type de congé trouvé.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

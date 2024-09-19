@@ -1,0 +1,47 @@
+{% extends 'main.html' %}
+
+{% block extra_css %}
+{% load static %}
+
+<style>
+    /* Arrière-plan avec image */
+    .about-section {
+        background-image: url("http://127.0.0.1:8000/static/images/photo9.png") ;
+        background-size: cover;
+        background-position: center;
+        padding-top: 20px;
+        padding-bottom: 50px; /* Espacement en bas pour équilibrer */
+    }
+
+    /* Réduction de l'espace entre la navbar et le contenu */
+    .container.pt-4 {
+        padding-top: 0 !important;
+        margin-top: -60px; /* Réduire l'espace au-dessus */
+    }
+
+    h1, p {
+        background-color: rgba(255, 255, 255, 0.8); /* Légère transparence pour améliorer la lisibilité sur l'image */
+        padding: 15px;
+        border-radius: 5px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid about-section">
+    <div class="container pt-4">
+        <h1 class="text-dark">About Us</h1>
+        <p class="text-secondary">Welcome to TimeOffPro! We are dedicated to providing a seamless and efficient leave management solution for employees and organizations.</p>
+        <p class="text-secondary">Our platform offers an intuitive interface for requesting and managing leave, ensuring that you can focus on what matters most while we handle the administrative tasks.</p>
+        <p class="text-secondary">If you have any questions or need further information, please don't hesitate to <a href="{% url 'contact' %}">contact us</a>.</p>
+    </div>
+    <footer class="text-center mt-5">
+        <p class="text-dark">&copy; 2024 Votre Entreprise. Tous droits réservés.</p>
+    </footer>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Paramètres des Fêtes Religieuses</h1>
+
+    <!-- Formulaire pour ajouter une nouvelle fête religieuse -->
+    <form method="POST" action="{% url 'add_religious_holiday' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="holidayName">Nom de la Fête Religieuse</label>
+            <input type="text" class="form-control" id="holidayName" name="name" placeholder="Entrez le nom de la fête religieuse" required>
+        </div>
+        <div class="form-group mt-2">
+            <label for="holidayStartDate">Date de Début</label>
+            <input type="date" class="form-control" id="holidayStartDate" name="start_date" required>
+        </div>
+        <div class="form-group mt-2">
+            <label for="holidayEndDate">Date de Fin</label>
+            <input type="date" class="form-control" id="holidayEndDate" name="end_date" required>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Ajouter</button>
+    </form>
+
+    <!-- Tableau pour afficher les fêtes religieuses existantes -->
+    <table class="table table-striped mt-5">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom de la Fête Religieuse</th>
+                <th>Date de Début</th>
+                <th>Date de Fin</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for holiday in holidays %}
+            <tr>
+                <td>{{ holiday.id }}</td>
+                <td>{{ holiday.name }}</td>
+                <td>{{ holiday.start_date }}</td>
+                <td>{{ holiday.end_date }}</td>
+                <td>
+                    <a href="{% url 'edit_religious_holiday' holiday.id %}" class="btn btn-warning btn-sm">Modifier</a>
+                    <a href="{% url 'delete_religious_holiday' holiday.id %}" class="btn btn-danger btn-sm">Supprimer</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">Aucune fête religieuse trouvée.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

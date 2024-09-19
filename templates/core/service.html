@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <section class="text-center text-dark">
+        <h2 class="display-4 font-weight-bold">Nos Types de Congés</h2>
+        <p class="lead">Découvrez les différents types de congés disponibles pour vous.</p>
+        <div class="row mt-5">
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card shadow-sm h-100 border-primary">
+                    <div class="card-body text-dark">
+                        <h3 class="card-title">Congé Annuel</h3>
+                        <p class="card-text">Profitez de vos jours de congé payés pour vous reposer et vous ressourcer.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card shadow-sm h-100 border-primary">
+                    <div class="card-body text-dark">
+                        <h3 class="card-title">Congé Maladie</h3>
+                        <p class="card-text">Demandez un congé en cas de maladie, avec un certificat médical si nécessaire.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card shadow-sm h-100 border-primary">
+                    <div class="card-body text-dark">
+                        <h3 class="card-title">Congé Parental</h3>
+                        <p class="card-text">Congé pour les nouveaux parents pour s'occuper de leur enfant.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card shadow-sm h-100 border-primary">
+                    <div class="card-body text-dark">
+                        <h3 class="card-title">Congé Sans Solde</h3>
+                        <p class="card-text">Demandez un congé sans solde pour des raisons personnelles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mt-5">
+        <h2 class="text-center font-weight-bold text-dark">Procédure de Demande de Congé</h2>
+        <p class="text-center text-dark">Pour demander un congé, veuillez suivre ces étapes :</p>
+        <ol class="list-group list-group-numbered mt-4 shadow-sm">
+            <li class="list-group-item text-dark">Remplissez le formulaire de demande de congé.</li>
+            <li class="list-group-item text-dark">Soumettez votre demande à votre supérieur.</li>
+            <li class="list-group-item text-dark">Attendez l'approbation de votre demande.</li>
+            
+        </ol>
+    </section>
+</div>
+
+<footer class="text-center mt-5 bg-light py-4 shadow-sm">
+    <p class="mb-0 text-dark">&copy; 2024 Votre Entreprise. Tous droits réservés.</p>
+</footer>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Ajouter un Nouveau Département</h1>
+
+    <form method="POST" action="{% url 'add_department' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="departmentName">Nom du Département</label>
+            <input type="text" class="form-control" id="departmentName" name="departmentName" placeholder="Entrez le nom du département" required>
+        </div>
+        <div class="form-group mt-2">
+            <label for="departmentDescription">Description</label>
+            <textarea class="form-control" id="departmentDescription" name="departmentDescription" placeholder="Entrez une description du département" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Ajouter</button>
+    </form>
+
+    {% if messages %}
+    <div class="mt-4">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

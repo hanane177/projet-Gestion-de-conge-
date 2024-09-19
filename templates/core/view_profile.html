@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Profil</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+        .profile-container {
+            margin-top: 60px;
+        }
+        .card {
+            border-radius: 12px;
+            border: none;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+        .profile-header {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        .profile-details {
+            padding: 30px;
+        }
+        .profile-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .profile-info-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+        .profile-info-card h5 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .profile-info-card p {
+            margin-bottom: 0;
+            font-size: 16px;
+            color: #555;
+        }
+        .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+    </style>
+</head>
+<body>
+    {% extends 'main.html' %}
+
+    {% block content %}
+    <div class="container profile-container">
+        <div class="card">
+            <div class="row g-0">
+                <!-- Colonne gauche avec l'image centrée et le nom -->
+                <div class="col-md-4 d-flex flex-column align-items-center justify-content-center bg-light p-4">
+                    {% if profile.profile_picture %}
+                        <img src="http://127.0.0.1:8000/static/images/photoprofil.png" alt="Profile Picture" class="profile-picture">
+                    {% else %}
+                        <p>Aucune photo de profil disponible.</p>
+                    {% endif %}
+                    <h3>{{ profile.user.first_name }} {{ profile.user.last_name }}</h3>
+                </div>
+
+                <!-- Colonne droite avec les informations du profil -->
+                <div class="col-md-8 profile-details">
+                    <h3 class="profile-title">Informations de Profil</h3>
+
+                    <div class="profile-info-card">
+                        <h5>CIN:</h5>
+                        <p>{{ profile.cin }}</p>
+                    </div>
+
+                    <div class="profile-info-card">
+                        <h5>Grade:</h5>
+                        <p>{{ profile.grade }}</p>
+                    </div>
+
+                    <div class="profile-info-card">
+                        <h5>Division:</h5>
+                        <p>{{ profile.division }}</p>
+                    </div>
+
+                    <div class="profile-info-card">
+                        <h5>Téléphone:</h5>
+                        <p>{{ profile.phone }}</p>
+                    </div>
+
+                    <div class="profile-info-card">
+                        <h5>Service:</h5>
+                        <p>{{ profile.service }}</p>
+                    </div>
+
+                    <a href="{% url 'edit_profile' %}" class="btn btn-primary mt-4">Modifier le Profil</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

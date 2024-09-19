@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h1>Supprimer la Fête Religieuse</h1>
+    <p>Êtes-vous sûr de vouloir supprimer "{{ holiday.name }}" ?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-black">Supprimer</button>
+        <a href="{% url 'manage_religious_holidays' %}" class="btn btn-secondary">Annuler</a>
+    </form>
+</div>
+{% endblock %}

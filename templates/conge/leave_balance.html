@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Soldes de Congés</h2>
+    
+    {% if leave_balance %}
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Type de Congé</th>
+                    <th scope="col">Solde</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Congé Annuel</td>
+                    <td>{{ leave_balance.annual_leave_balance|default:0 }} jours</td>
+                </tr>
+                <tr>
+                    <td>Congé Maladie</td>
+                    <td>{{ leave_balance.sick_leave_balance|default:0 }} jours</td>
+                </tr>
+                <tr>
+                    <td>Congé Maternité</td>
+                    <td>{{ leave_balance.maternity_leave_balance|default:0 }} jours</td>
+                </tr>
+                <tr>
+                    <td>Congé Exceptionnel</td>
+                    <td>{{ leave_balance.exceptional_leave_balance|default:0 }} jours</td>
+                </tr>
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            Aucun solde de congés trouvé pour cet utilisateur.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

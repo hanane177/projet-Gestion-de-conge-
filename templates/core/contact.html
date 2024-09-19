@@ -1,0 +1,101 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="contact-section">
+    <div class="container">
+        <section class="text-center mt-5">
+            <h2 class="display-4 text-dark">Contactez-Nous</h2>
+            <p class="lead text-dark">Nous sommes là pour répondre à toutes vos questions.</p>
+        </section>
+
+        <section class="mt-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="text-dark">Nos Coordonnées</h3>
+                    <ul class="list-unstyled text-dark">
+                        <li><strong>Adresse :</strong>  TanTan,Maroc</li>
+                        <li><strong>Téléphone :</strong> 0640081514</li>
+                        <li><strong>Email :</strong> Province.TanTan@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h3 class="text-dark">Envoyez-nous un message</h3>
+                    <form method="post" action="{% url 'submit_contact_form' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="form-label text-dark">Nom</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label text-dark">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label text-dark">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="text-center mt-5">
+        <p class="text-dark">&copy; 2024 Votre Entreprise. Tous droits réservés.</p>
+    </footer>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+{% load static %}
+<style>
+    body {
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        background:  url("http://127.0.0.1:8000/static/images/photo12.png") no-repeat center center fixed;
+        background-size: cover;
+        color: #343a40;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+    }
+
+    .contact-section {
+        padding: 60px 0; /* Augmenté pour un espacement plus agréable */
+    }
+
+    .container {
+        background-color: rgba(255, 255, 255, 0.8);
+        color: #000;
+        padding: 50px;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    footer {
+        background-color: rgba(0, 0, 0, 0.9);
+        color: #fff;
+        padding: 15px 0;
+    }
+
+    .btn-primary {
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        border-radius: 5px;
+    }
+
+    .btn-primary:hover {
+        background-color: #080808;
+        transform: scale(1.05);
+    }
+
+    h3 {
+        border-bottom: 2px solid #000;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

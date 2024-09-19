@@ -1,0 +1,97 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Décision de Congé</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between; /* Aligne les éléments aux extrémités */
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #000;
+        }
+        .header img {
+            width: 120px; /* Ajuste la taille des images */
+        }
+        .header .logo-left {
+            margin-right: auto; /* Assure que le logo de gauche est collé au bord gauche */
+        }
+        .header .logo-right {
+            margin-left: auto; /* Assure que le logo de droite est collé au bord droit */
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        .content {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        .details {
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+        .details label {
+            font-weight: bold;
+        }
+        .paragraph {
+            margin-top: 30px;
+            text-align: justify;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="http://127.0.0.1:8000/static/images/logo1.png" alt="Logo 1 " class="logo-right"/>
+    </div>
+
+    <h1>Décision de Congé</h1>
+
+    <div class="content">
+        <div class="details">
+            <label>Nom de l'employé :</label> {{ leave_request.user.get_full_name }}<br>
+            <label>Type de congé :</label> {{ leave_request.type_conge }}<br>
+            <label>Date de début :</label> {{ leave_request.date_debut|date:"d/m/Y" }}<br>
+            <label>Date de fin :</label> {{ leave_request.date_fin|date:"d/m/Y" }}<br>
+            <label>Statut :</label> {{ leave_request.statut }}<br>
+            <label>Date de création :</label> {{ leave_request.date_creation|date:"d/m/Y H:i" }}<br>
+        </div>
+
+        <!-- Section de paragraphe conditionnelle -->
+        <div class="paragraph">
+            {% if leave_request.statut == 'validé' %}
+                <p>
+                    Nous sommes heureux de vous informer que votre demande de congé a été approuvée. Veuillez vous assurer de respecter les dates de début et de fin indiquées ci-dessus. Nous vous souhaitons un agréable repos.
+                </p>
+            {% elif leave_request.statut == 'rejeté' %}
+                <p>
+                    Nous regrettons de vous informer que votre demande de congé a été rejetée. Pour plus de détails ou pour discuter de cette décision, veuillez contacter votre responsable direct ou le service des ressources humaines.
+                </p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Merci de votre attention.</p>
+    </div>
+</body>
+</html>

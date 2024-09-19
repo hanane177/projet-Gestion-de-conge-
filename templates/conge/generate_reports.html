@@ -1,0 +1,55 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Générer des Rapports</h1>
+
+    <!-- Affichage des messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Formulaire pour générer des rapports -->
+    <form method="POST" action="{% url 'generate_reports' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="report_type">Type de Rapport</label>
+            <select class="form-control" id="report_type" name="report_type">
+                <option value="employees">Rapport des Employés</option>
+                <option value="leaves">Rapport des Congés</option>
+            </select>
+        </div>
+        <div class="form-group mt-3">
+            <label for="start_date">Date de Début</label>
+            <input type="date" class="form-control" id="start_date" name="start_date">
+        </div>
+        <div class="form-group mt-3">
+            <label for="end_date">Date de Fin</label>
+            <input type="date" class="form-control" id="end_date" name="end_date">
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Générer le Rapport</button>
+    </form>
+    
+    <!-- Section pour afficher les rapports générés -->
+    <div class="mt-5">
+        <h2>Rapports Générés</h2>
+        {% if reports %}
+            <ul class="list-group">
+                {% if report_type == 'employees' %}
+                    {% for report in reports %}
+                        <li class="list-group-item">Nom: {{ report.name }} - Position: {{ report.position }} - Date de début: {{ report.start_date }}</li>
+                    {% endfor %}
+                {% elif report_type == 'leaves' %}
+                    {% for report in reports %}
+                        <li class="list-group-item">Employé: {{ report.employee }} - Type: {{ report.type }} - Du {{ report.start_date }} au {{ report.end_date }}</li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        {% else %}
+            <p>Aucun rapport généré pour le moment.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

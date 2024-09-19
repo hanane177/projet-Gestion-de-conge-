@@ -1,0 +1,13 @@
+{% for leave_request in leave_requests %}
+    <tr>
+        <td>{{ leave_request.type_conge }}</td>
+        <td>{{ leave_request.date_debut }}</td>
+        <td>{{ leave_request.date_fin }}</td>
+        <td>{{ leave_request.get_statut_display }}</td>
+        <td>
+            {% if leave_request.statut == 'EN_ATTENTE' %}
+                <a href="{% url 'delete_leave_request' leave_request.id %}" class="btn btn-danger">Supprimer</a>
+            {% endif %}
+        </td>
+    </tr>
+{% endfor %}

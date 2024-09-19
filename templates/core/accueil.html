@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application de Suivi des Congés</title>
+    
+    <!-- Inclusion de Bootstrap pour un design responsive et moderne -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* Styles globaux */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-image: url('https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/7181708/NDCFeLtJNjWgPhiF.png'); /* Arrière-plan de l'image */
+            background-size: cover; /* Couvrir toute la page */
+            color: #343a40;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Éviter les barres de défilement horizontales */
+        }
+
+        /* Container centralisé sans fond blanc */
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: none; /* Pas d'ombre */
+            backdrop-filter: blur(10px); /* Effet de flou pour le fond */
+            color: #fff; /* Texte blanc pour contraster avec l'arrière-plan */
+        }
+
+        /* Style pour le titre principal */
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #010000; /* Couleur du titre */
+        }
+
+        /* Style des paragraphes */
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #ffffff; /* Couleur du texte des paragraphes */
+        }
+        footer {
+        background-color: rgba(0, 0, 0, 0.9);
+        color: #fff;
+        padding: 15px 0;
+    }
+
+        /* Styles pour les boutons */
+        .btn-custom {
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .btn-primary-custom {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+
+        .btn-secondary-custom {
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-secondary-custom:hover {
+            background-color: #5a6268;
+            color: #fff;
+        }
+
+        /* Espacement entre les groupes de boutons */
+        .btn-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    {% extends 'main.html' %}
+
+    {% block content %}
+    <div class="container text-center">
+        <h1>Bienvenue sur l'Application de Suivi des Congés</h1>
+        
+        {% if user.is_authenticated %}
+            <p>Utilisez les boutons ci-dessous pour accéder aux différentes fonctionnalités de gestion des congés.</p>
+            
+            <!-- Liens vers les fonctionnalités principales -->
+            <div class="btn-group">
+                <a href="{% url 'submit_leave' %}" class="btn btn-primary-custom btn-custom">Faire une demande de congé</a>
+                <a href="{% url 'leave_list' %}" class="btn btn-secondary-custom btn-custom">Voir les demandes de congés</a>
+            </div>
+
+            <!-- Liens vers les différents dashboards -->
+            <div class="btn-group">
+                <a href="{% url 'employee_dashboard' %}" class="btn btn-primary-custom btn-custom">Dashboard Employé</a>
+                <a href="{% url 'hr_dashboard' %}" class="btn btn-secondary-custom btn-custom">Dashboard Responsable RH</a>
+                <a href="{% url 'admin_dashboard' %}" class="btn btn-primary-custom btn-custom">Dashboard Administrateur</a>
+            </div>
+        {% else %}
+            <p>Pour accéder à toutes les fonctionnalités, veuillez vous connecter. Vous pouvez vous inscrire ou vous connecter en utilisant les liens ci-dessous.</p>
+            
+            <!-- Liens pour l'inscription et la connexion -->
+            <div class="btn-group">
+                <a href="{% url 'login' %}" class="btn btn-primary-custom btn-custom">Se connecter</a>
+                <a href="{% url 'signup' %}" class="btn btn-secondary-custom btn-custom">S'inscrire</a>
+            </div>
+        {% endif %}
+    </div>
+    <footer class="text-center mt-5">
+        <p class="text-dark">&copy; 2024 Votre Entreprise. Tous droits réservés.</p>
+    </footer>
+    {% endblock %}
+
+    <!-- Inclusion de Bootstrap JS pour les interactions dynamiques -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

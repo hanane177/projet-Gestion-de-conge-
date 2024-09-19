@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+
+{% block content %}
+  <h2>Liste des utilisateurs</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>CIN</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        <tr>
+          <td>{{ user.first_name }} {{ user.last_name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.cin }}</td>
+          <td>
+            <a href="{% url 'update_user' user.id %}">Modifier</a> |
+            <a href="{% url 'delete_user' user.id %}">Supprimer</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'create_user' %}">Ajouter un utilisateur</a>
+{% endblock %}

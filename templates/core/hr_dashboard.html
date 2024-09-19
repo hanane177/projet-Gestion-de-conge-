@@ -1,0 +1,72 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="dashboard-header text-center mt-4">
+    <h1>Tableau de Bord - Responsable RH</h1>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Gérer les Employés -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header">
+                    Gérer les Employés
+                </div>
+                <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                    <a href="{% url 'user_list' %}" class="btn btn-secondary mb-2">Liste des Employés</a>
+                    <a href="{% url 'create_user' %}" class="btn btn-secondary">Ajouter un Nouvel Employé</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gérer Types de Congés -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header">
+                    Gérer Types de Congés
+                </div>
+                <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                    <a href="{% url 'manage_religious_holidays' %}" class="btn btn-secondary">Gérer les Types de Congés</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Ajouter Département -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header">
+                    Ajouter Département
+                </div>
+                <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                    <a href="{% url 'add_department' %}" class="btn btn-secondary">Ajouter un Nouveau Département</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Générer des Rapports -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header">
+                    Générer des Rapports
+                </div>
+                <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                    <a href="{% url 'generate_reports' %}" class="btn btn-secondary">Générer des Rapports sur les Employés et les Congés</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/scripts.js' %}"></script>
+{% endblock %}
